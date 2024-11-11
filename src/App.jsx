@@ -28,7 +28,7 @@ function App() {
         }}
       >
         <Nav toggleDrawer={toggleDrawer} setToggleDrawer={setToggleDrawer} />
-        <Box>
+        <Box component="main">
           <Outlet></Outlet>
         </Box>
       </Box>

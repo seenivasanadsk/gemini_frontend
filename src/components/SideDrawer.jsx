@@ -16,7 +16,7 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import LuggageIcon from "@mui/icons-material/Luggage";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function SideDrawer({
   toggleDrawer,
@@ -25,6 +25,12 @@ function SideDrawer({
   isBigScreen,
 }) {
   const navigate = useNavigate();
+  const location = useLocation();
+  const activeBarDesign = {
+    backgroundColor: "primary.main",
+    color: "white",
+  };
+
   const DrawerItems = [
     { name: "Orders", icon: <LocalShippingIcon />, navlink: "/orders" },
     { name: "Delivery Sheet", icon: <ListAltIcon />, navlink: "/delivery" },
@@ -56,10 +62,17 @@ function SideDrawer({
       <Divider></Divider>
       <List>
         {DrawerItems.map((item, index) => (
-          <Box key={index}>
+          <Box
+            key={index}
+            sx={location.pathname == item.navlink ? activeBarDesign : {}}
+          >
             <ListItem disablePadding onClick={() => navigate(item.navlink)}>
               <ListItemButton>
-                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemIcon
+                  sx={location.pathname == item.navlink ? activeBarDesign : {}}
+                >
+                  {item.icon}
+                </ListItemIcon>
                 <ListItemText primary={item.name} />
               </ListItemButton>
             </ListItem>

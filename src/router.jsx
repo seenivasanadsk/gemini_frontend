@@ -13,8 +13,8 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/",
-        redirect: "/delivery",
+        path: "/orders",
+        lazy: async () => lazyLoad("./page/Orders"),
       },
       {
         path: "/delivery",
@@ -23,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/party",
         lazy: async () => lazyLoad("./page/Party"),
+      },
+      {
+        path: "/frequent",
+        lazy: async () => lazyLoad("./page/Frequent"),
       },
     ],
   },
